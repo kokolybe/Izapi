@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Installer les dépendances nécessaires
-apt-get update
-apt-get install -y wget unzip libnss3 libxss1 libasound2 libatk1.0-0 libatk-bridge2.0-0 libcups2 fonts-liberation libappindicator3-1 libgbm-dev
 
-# Télécharger et installer Chrome si nécessaire
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-dpkg -i google-chrome-stable_current_amd64.deb || apt-get -f install -y
+# Télécharger Chrome Portable
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome.deb
+
+# Extraire le fichier dans un répertoire local
+dpkg-deb -x /tmp/google-chrome.deb /tmp/chrome
+
+# Déplacer les fichiers extraits dans un dossier accessible par l'application
+mv /tmp/chrome/opt/google/chrome /opt/chrome
