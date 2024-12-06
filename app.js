@@ -1,6 +1,15 @@
 const express = require("express");
-const { Builder, By, until } = require("selenium-webdriver");
-require("chromedriver");
+const chrome = require("selenium-webdriver/chrome");
+
+const options = new chrome.Options();
+options.setChromeBinaryPath("/opt/chrome/chrome"); // Spécifie le chemin vers Chrome portable
+options.addArguments(
+  "--no-sandbox",
+  "--disable-dev-shm-usage",
+  "--headless",
+  "--disable-gpu",
+  "--window-size=1920,1080"
+);
 
 const app = express();
 const PORT = 3000;
